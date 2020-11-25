@@ -20,3 +20,13 @@ storeFile=
 - Run `flutter pub run flutter_launcher_icons:main ` to build update your app icon. you can replace the icon in `assets/images/logo.png` with you own image (A PNG file would work better)
   This project is a starting point for a Flutter application.
 
+## Tool (Plugin / Packages)
+
+- Provider
+- Hive
+- Shared Preferences
+- Auto Routes
+- Get it
+- Injectable
+- Bot Toast
+- Http
