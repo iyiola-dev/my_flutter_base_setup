@@ -1,0 +1,3 @@
+flutter pub run build_runner watch --delete-conflicting-outputs
+
+flutter pub run flutter_launcher_icons:main
