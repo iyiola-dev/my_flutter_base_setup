@@ -43,3 +43,5 @@ app.*.map.json
 #generated files
 *.gr.dart
 *.config.dart
+
+pubspec.lock
