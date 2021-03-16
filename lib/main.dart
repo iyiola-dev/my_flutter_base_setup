@@ -1,7 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'service/navigation_service.dart';
-import 'util/my_router.gr.dart';
 import 'util/injection.dart';
 
 void main() {
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
       ],
       builder: BotToastInit(),
       title: 'Flutter Demo',
-      onGenerateRoute: MyRouter(),
       navigatorKey: NavigationService().navigationKey,
     );
   }

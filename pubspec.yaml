@@ -7,25 +7,28 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  bot_toast: ^3.0.4
-  auto_route: ^0.6.9
-  get_it: ^4.0.2
-  hive: ^1.4.1+1
-  hive_flutter: ^0.3.1
-  http: ^0.12.0+2
-  http_interceptor: ^0.3.2
-  injectable: ^1.0.4
-  path_provider: ^1.6.5
-  permission_handler: ^5.0.1+1
-  provider: ^4.0.5
-  flutter_libphonenumber: ^0.3.11
-  country_code_picker: ^1.6.0
-  shared_preferences: ^0.5.12+4
+  bot_toast: ^4.0.0+1
+  get_it: ^6.0.0
+  hive: ^1.6.0-nullsafety.2
+  hive_flutter: ^1.0.0-nullsafety.0
+  http: ^0.13.0
+  http_interceptor: ^0.4.1
+  http_parser: ^4.0.0
+  injectable: ^1.2.0
+  path_provider: ^2.0.1
+  permission_handler: ^6.0.1+1
+  provider: ^5.0.0
+  flutter_libphonenumber: ^1.0.3
+  country_code_picker: ^2.0.1
+  shared_preferences: ^2.0.4
+  objectbox: ^0.13.0-nullsafety.1
+  objectbox_flutter_libs: ^0.13.0-nullsafety.1
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -35,10 +38,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: null
-  flutter_launcher_icons: "^0.7.4"
-  hive_generator: ^0.8.1
-  injectable_generator: ^1.0.4
-  auto_route_generator: ^0.6.10
+  flutter_launcher_icons: ^0.9.0
+  hive_generator: ^0.9.0-nullsafety.1
+  injectable_generator: ^1.2.0
+  objectbox_generator: ^0.13.0-nullsafety.1
 
 # handle Futter icons
 flutter_icons:

@@ -2,7 +2,7 @@ import 'package:http_interceptor/http_interceptor.dart';
 
 class NetworkInterceptor implements InterceptorContract {
   @override
-  Future<RequestData> interceptRequest({RequestData data}) async {
+  Future<RequestData> interceptRequest({RequestData? data}) async {
     // int shouldRefresh =
     //     DateTime.parse("time to expire").compareTo(DateTime.now());
     // if (shouldRefresh > 0) {
@@ -17,11 +17,11 @@ class NetworkInterceptor implements InterceptorContract {
     //   return data;
     // }
 
-    return data;
+    return data!;
   }
 
   @override
-  Future<ResponseData> interceptResponse({ResponseData data}) async {
+  Future<ResponseData> interceptResponse({required ResponseData data}) async {
     print("Response Code => ${data.statusCode}");
     return data;
   }

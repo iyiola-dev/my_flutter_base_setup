@@ -6,29 +6,29 @@ import 'package:country_code_picker/country_code_picker.dart';
 class PhoneInputField extends StatefulWidget {
   /// surpoted field are
   /// [amount], [number]
-  final Widget prefixIocn;
-  final Image prefixImage;
-  final String field;
-  final int maxLength;
-  final TextEditingController textController;
-  final TextInputAction textInputAction;
+  final Widget? prefixIocn;
+  final Image? prefixImage;
+  final String? field;
+  final int? maxLength;
+  final TextEditingController? textController;
+  final TextInputAction? textInputAction;
   // final Map responce;
 
-  final String label;
+  final String? label;
   // final bool multiline;
-  final ValueChanged<String> onChanged;
-  final ValueChanged<String> onDialCodeChange;
-  final String initValue;
-  final Function validator;
+  final ValueChanged<String?> onChanged;
+  final ValueChanged<String?> onDialCodeChange;
+  final String? initValue;
+  final Function? validator;
   final bool showErr;
   final double borderRad;
   final bool hasBorder;
   final bool autoValidate;
-  final Widget suffix;
-  final Function onEditingComplete;
+  final Widget? suffix;
+  final Function? onEditingComplete;
   const PhoneInputField({
     this.field,
-    Key key,
+    Key? key,
     this.borderRad = 5.0,
     this.maxLength,
     this.suffix,
@@ -45,8 +45,8 @@ class PhoneInputField extends StatefulWidget {
     this.onEditingComplete,
     // this.multiline,
     this.initValue,
-    @required this.onChanged,
-    @required this.onDialCodeChange,
+    required this.onChanged,
+    required this.onDialCodeChange,
   }) : super(key: key);
   @override
   _PhoneInputFieldState createState() => _PhoneInputFieldState();
@@ -54,34 +54,34 @@ class PhoneInputField extends StatefulWidget {
 
 class _PhoneInputFieldState extends State<PhoneInputField>
     with WidgetsBindingObserver {
-  Map responce;
-  String label;
-  String _initValue;
+  Map? responce;
+  String? label;
+  String? _initValue;
 
   void _handleChanged() {
     widget.onChanged(finalValue);
   }
 
-  String finalValue;
-  String _contryCode = "NG";
+  String? finalValue;
+  String? _contryCode = "NG";
   String _dialCode = "+234";
   tryou() async {
     try {
       await FlutterLibphonenumber().init();
 
-      print(widget.textController.text);
+      print(widget.textController!.text);
 
-      if (widget.textController.text != "" &&
-          widget.textController.text != null) {
+      if (widget.textController!.text != "" &&
+          widget.textController!.text != null) {
         final formattedNumber =
-            await FlutterLibphonenumber().parse(widget.textController.text);
+            await FlutterLibphonenumber().parse(widget.textController!.text);
         // print(formattedNumber);
         // print(formattedNumber['national_number']);
         // print(formattedNumber['national_number']);
         // _contryCode = formattedNumber['country_code'];
         // _dialCode = formattedNumber['country_code'];
         // numberCtr = TextEditingController(text: formattedNumber['national_number']);
-        widget.textController.text = formattedNumber['national_number'];
+        widget.textController!.text = formattedNumber['national_number'];
         setState(() {});
       }
     } catch (e) {}
@@ -105,20 +105,20 @@ class _PhoneInputFieldState extends State<PhoneInputField>
             const TextStyle(fontWeight: FontWeight.w400, color: Colors.black),
         initialValue: _initValue,
         onEditingComplete: () {
-          if (widget.onEditingComplete != null) widget.onEditingComplete();
+          if (widget.onEditingComplete != null) widget.onEditingComplete!();
         },
         textInputAction: widget.textInputAction,
-        validator: widget.validator,
+        validator: widget.validator as String? Function(String?)?,
         onChanged: (String value) {
           setState(() {
             // finalValue = value.trim();
-            finalValue = _dialCode + widget.textController.text;
+            finalValue = _dialCode + widget.textController!.text;
           });
           _handleChanged();
         },
         onFieldSubmitted: (value) {
           setState(() {
-            finalValue = _dialCode + widget.textController.text;
+            finalValue = _dialCode + widget.textController!.text;
           });
           _handleChanged();
         },
@@ -129,7 +129,7 @@ class _PhoneInputFieldState extends State<PhoneInputField>
                 print('onCountrySelected: $country'),
             onFormatFinished: (formattedVal) =>
                 print('onFormatFinished: $formattedVal'),
-            overrideSkipCountryCode: _contryCode,
+            overrideSkipCountryCode: _contryCode!,
             phoneNumberType: PhoneNumberType.mobile,
             phoneNumberFormat: PhoneNumberFormat.national,
           )

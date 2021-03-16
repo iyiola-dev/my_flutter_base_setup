@@ -8,7 +8,7 @@ import 'status_enum.dart';
 class BaseModel extends ChangeNotifier {
   Status _status = Status.LOADING;
   String errorMessage = "";
-  BuildContext context;
+  BuildContext? context;
   Status get status => _status;
   void setStatus(Status viewStatus) {
     _status = viewStatus;

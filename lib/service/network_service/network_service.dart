@@ -15,10 +15,10 @@ class NetworkService {
 
   Future<dynamic> get(
     String uri, {
-    Map<String, String> header,
+    Map<String, String>? header,
   }) async {
     try {
-      return await appCLient.get(uri, headers: header);
+      return await appCLient.get(Uri.parse(baseUrl + uri), headers: header);
     } on SocketException catch (e) {
       throw SocketException(e.toString());
     } catch (e) {
@@ -28,12 +28,12 @@ class NetworkService {
 
   Future<dynamic> post(
     String uri, {
-    Map<String, String> header,
-    Map<String, dynamic> body,
+    Map<String, String>? header,
+    Map<String, dynamic>? body,
   }) async {
     try {
       var _body = jsonEncode(body);
-      return await appCLient.post(uri, headers: header, body: _body);
+      return await appCLient.post(Uri.parse(baseUrl + uri), headers: header, body: _body);
     } on SocketException catch (e) {
       throw SocketException(e.toString());
     } catch (e) {
@@ -43,10 +43,10 @@ class NetworkService {
 
   Future<dynamic> delete(
     String uri, {
-    Map<String, String> header,
+    Map<String, String>? header,
   }) async {
     try {
-      return await appCLient.delete(uri, headers: header);
+      return await appCLient.delete(Uri.parse(baseUrl + uri), headers: header);
     } on SocketException catch (e) {
       throw SocketException(e.toString());
     } catch (e) {
@@ -56,13 +56,13 @@ class NetworkService {
 
   Future<dynamic> patch(
     String uri, {
-    Map<String, String> header,
-    Map<String, dynamic> body,
+    Map<String, String>? header,
+    Map<String, dynamic>? body,
   }) async {
     try {
       var _body = jsonEncode(body);
 
-      return await appCLient.patch(uri, headers: header, body: _body);
+      return await appCLient.patch(Uri.parse(baseUrl + uri), headers: header, body: _body);
     } on SocketException catch (e) {
       throw SocketException(e.toString());
     } catch (e) {
@@ -72,12 +72,12 @@ class NetworkService {
 
   Future<dynamic> put(
     String uri, {
-    Map<String, String> header,
-    Map<String, dynamic> body,
+    Map<String, String>? header,
+    Map<String, dynamic>? body,
   }) async {
     try {
       var _body = jsonEncode(body);
-      return await appCLient.put(uri, headers: header, body: _body);
+      return await appCLient.put(Uri.parse(baseUrl + uri), headers: header, body: _body);
     } on SocketException catch (e) {
       throw SocketException(e.toString());
     } catch (e) {

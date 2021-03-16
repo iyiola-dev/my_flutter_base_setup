@@ -3,11 +3,11 @@ import 'package:flutter_base/util/base_view_model/status_enum.dart';
 import 'package:http/http.dart';
 
 class ApiResponse<T> {
-  Status status;
-  T data;
-  String message;
-  bool success;
-  List errors;
+  Status? status;
+  T? data;
+  String? message;
+  bool? success;
+  List? errors;
   ApiResponse({this.data, this.message, this.success, this.errors});
   ApiResponse.loading(this.message) : status = Status.LOADING;
   ApiResponse.completed(this.data) : status = Status.COMPLETED;
@@ -28,7 +28,7 @@ ApiResponse returnResponse(Response response) {
     case 204:
       return ApiResponse(success: true, message: "", data: responseJson);
     case 400:
-      String msg = responseJson["message"];
+      String? msg = responseJson["message"];
       if (msg == "") {
         msg = responseJson["error"];
       }

@@ -9,19 +9,19 @@ class NavigationService {
   final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
 
   Future<dynamic> navigateTo(String routeName, {arguments}) async =>
-      navigationKey.currentState.pushNamed(routeName, arguments: arguments);
+      navigationKey.currentState!.pushNamed(routeName, arguments: arguments);
 
   Future<dynamic> navigateToReplace(String routeName, {arguments}) async =>
-      navigationKey.currentState
+      navigationKey.currentState!
           .pushReplacementNamed(routeName, arguments: arguments);
 
   dynamic goBack([dynamic popValue]) {
-    return navigationKey.currentState.pop(popValue);
+    return navigationKey.currentState!.pop(popValue);
   }
 
-  Future<bool> maybePop<T>([T data]) =>
-      navigationKey.currentState.maybePop(data);
+  Future<bool> maybePop<T>([T? data]) =>
+      navigationKey.currentState!.maybePop(data);
 
   void popToHome() =>
-      navigationKey.currentState.popUntil((route) => route.isFirst);
+      navigationKey.currentState!.popUntil((route) => route.isFirst);
 }

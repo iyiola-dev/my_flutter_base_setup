@@ -22,7 +22,7 @@ class YMargin extends StatelessWidget {
   }
 }
 
-noticeSnackBar({String message, int duration = 3}) {
+noticeSnackBar({String? message, int duration = 3}) {
   HapticFeedback.vibrate();
   BotToast.showCustomNotification(
       toastBuilder: (cancelFunc) {
@@ -42,17 +42,13 @@ noticeSnackBar({String message, int duration = 3}) {
                 children: [
                   Text(
                     "Notice",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   const YMargin(3),
                   Expanded(
                     child: Text(
                       "$message",
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w500),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],
@@ -62,7 +58,7 @@ noticeSnackBar({String message, int duration = 3}) {
       duration: Duration(seconds: duration));
 }
 
-errorSnackBar({BuildContext context, String message, int duration = 3}) {
+errorSnackBar({BuildContext? context, String? message, int duration = 3}) {
   HapticFeedback.vibrate();
   BotToast.showCustomNotification(
       toastBuilder: (cancelFunc) {
@@ -82,17 +78,13 @@ errorSnackBar({BuildContext context, String message, int duration = 3}) {
                 children: [
                   Text(
                     "Error",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   const YMargin(3),
                   Expanded(
                     child: Text(
                       "$message",
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w500),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],
@@ -102,7 +94,7 @@ errorSnackBar({BuildContext context, String message, int duration = 3}) {
       duration: Duration(seconds: duration));
 }
 
-successSnackBar({String message}) {
+successSnackBar({String? message}) {
   HapticFeedback.vibrate();
   BotToast.showCustomNotification(
       toastBuilder: (cancelFunc) {
@@ -124,16 +116,12 @@ successSnackBar({String message}) {
                     children: [
                       Text(
                         "Success",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       const YMargin(3),
                       Text(
                         "$message",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -144,7 +132,7 @@ successSnackBar({String message}) {
       duration: const Duration(seconds: 4));
 }
 
-Future<bool> awaitConsent(context, width, height, message) async {
+Future<bool?> awaitConsent(context, width, height, message) async {
   return await showDialog<bool>(
     context: context,
     builder: (context) => Scaffold(
@@ -153,8 +141,7 @@ Future<bool> awaitConsent(context, width, height, message) async {
         child: Container(
           height: height * .25,
           padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
           width: width * .8,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -175,9 +162,7 @@ Future<bool> awaitConsent(context, width, height, message) async {
                   Expanded(
                     child: FlatButton(
                         padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
-                            side: BorderSide(width: .5),
-                            borderRadius: BorderRadius.circular(5)),
+                        shape: RoundedRectangleBorder(side: BorderSide(width: .5), borderRadius: BorderRadius.circular(5)),
                         onPressed: () async {
                           Navigator.pop(context, false);
                         },
@@ -190,16 +175,14 @@ Future<bool> awaitConsent(context, width, height, message) async {
                   Expanded(
                     child: FlatButton(
                         padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         color: Colors.grey,
                         onPressed: () async {
                           Navigator.pop(context, true);
                         },
                         child: Text(
                           "CONFIRM",
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: "futurabold"),
+                          style: TextStyle(color: Colors.white, fontFamily: "futurabold"),
                         )),
                   ),
                 ],
@@ -217,8 +200,7 @@ Future<bool> onWillPop(BuildContext context) {
   return showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Confirm Exit?',
-              style: TextStyle(color: Colors.black, fontSize: 18.0)),
+          title: const Text('Confirm Exit?', style: TextStyle(color: Colors.black, fontSize: 18.0)),
           content: Text(
             'Are you sure you want to exit Telah ? Tap \'Yes\' to exit \'No\' to cancel.',
             style: TextStyle(fontWeight: FontWeight.w500, color: Colors.red),
@@ -229,27 +211,24 @@ Future<bool> onWillPop(BuildContext context) {
                 // this line exits the app.
                 SystemChannels.platform.invokeMethod('SystemNavigator.pop');
               },
-              child: Text('Yes',
-                  style: TextStyle(fontSize: 16.0, color: Colors.blue)),
+              child: Text('Yes', style: TextStyle(fontSize: 16.0, color: Colors.blue)),
             ),
             FlatButton(
               onPressed: () => Navigator.pop(context),
               // this line dismisses the dialog
-              child: Text('No',
-                  style: TextStyle(fontSize: 16.0, color: Colors.blue)),
+              child: Text('No', style: TextStyle(fontSize: 16.0, color: Colors.blue)),
             )
           ],
         ),
-      ) ??
-      false;
+      ) as Future<bool>? ??
+      false as Future<bool>;
 }
 
 Future<bool> onLogOutPop(context) {
   return showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Confirm Logout?',
-              style: TextStyle(color: Colors.black, fontSize: 18.0)),
+          title: Text('Confirm Logout?', style: TextStyle(color: Colors.black, fontSize: 18.0)),
           content: Text(
             'Are you sure you want to log out from Telah ? Tap \'Yes\' to Logout \'No\' to cancel.',
             style: TextStyle(fontWeight: FontWeight.w500, color: Colors.blue),
@@ -259,22 +238,20 @@ Future<bool> onLogOutPop(context) {
               onPressed: () {
                 Navigator.pop(context, true);
               },
-              child: Text('Yes',
-                  style: TextStyle(fontSize: 16.0, color: Colors.blue)),
+              child: Text('Yes', style: TextStyle(fontSize: 16.0, color: Colors.blue)),
             ),
             FlatButton(
               onPressed: () => Navigator.pop(context, false),
               // this line dismisses the dialog
-              child: Text('No',
-                  style: TextStyle(fontSize: 16.0, color: Colors.blue)),
+              child: Text('No', style: TextStyle(fontSize: 16.0, color: Colors.blue)),
             )
           ],
         ),
-      ) ??
-      false;
+      ) as Future<bool>? ??
+      false as Future<bool>;
 }
 
-Future<void> showSuccessDialog({BuildContext context, String message}) async {
+Future<void> showSuccessDialog({required BuildContext context, String? message}) async {
   Future _close() async {
     Navigator.pop(context);
   }
@@ -282,57 +259,53 @@ Future<void> showSuccessDialog({BuildContext context, String message}) async {
   return showDialog(
       barrierDismissible: false,
       context: context,
-      child: WillPopScope(
-        onWillPop: () {
-          return;
-        },
-        child: Center(
-          child: AlertDialog(
-            backgroundColor: Colors.white,
-            content: Container(
-              constraints: BoxConstraints(
-                maxHeight: 180,
-              ),
-              child: Column(
-                children: <Widget>[
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.green,
-                    size: 40,
+      builder: (_) => WillPopScope(
+            onWillPop: () {
+              return;
+            } as Future<bool> Function()?,
+            child: Center(
+              child: AlertDialog(
+                backgroundColor: Colors.white,
+                content: Container(
+                  constraints: BoxConstraints(
+                    maxHeight: 180,
                   ),
-                  SizedBox(height: 20),
-                  Expanded(
-                      flex: 1,
-                      child: Text(
-                        message,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500),
-                      )),
-                  SizedBox(height: 10),
-                  RaisedButton(
-                    color: Colors.green,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    onPressed: () async {
-                      await _close();
-                    },
-                    child: Text(
-                      'OK',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                ],
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                        size: 40,
+                      ),
+                      SizedBox(height: 20),
+                      Expanded(
+                          flex: 1,
+                          child: Text(
+                            message!,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.blue, fontSize: 13, fontWeight: FontWeight.w500),
+                          )),
+                      SizedBox(height: 10),
+                      RaisedButton(
+                        color: Colors.green,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        onPressed: () async {
+                          await _close();
+                        },
+                        child: Text(
+                          'OK',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ));
+          ));
 }
 
-Future<void> showFailureDialog({BuildContext context, String message}) async {
+Future<void> showFailureDialog({required BuildContext context, String? message}) async {
   Future _close() async {
     Navigator.pop(context);
   }
@@ -340,53 +313,49 @@ Future<void> showFailureDialog({BuildContext context, String message}) async {
   return showDialog(
       barrierDismissible: false,
       context: context,
-      child: WillPopScope(
-        onWillPop: () {
-          return;
-        },
-        child: Center(
-          child: AlertDialog(
-            backgroundColor: Colors.white,
-            content: Container(
-              constraints: BoxConstraints(
-                maxHeight: 180,
-              ),
-              child: Column(
-                children: <Widget>[
-                  Icon(
-                    // Icons.info,
-                    Icons.cancel,
-                    color: Colors.redAccent[700],
-                    size: 40,
+      builder: (_) => WillPopScope(
+            onWillPop: () {
+              return;
+            } as Future<bool> Function()?,
+            child: Center(
+              child: AlertDialog(
+                backgroundColor: Colors.white,
+                content: Container(
+                  constraints: BoxConstraints(
+                    maxHeight: 180,
                   ),
-                  SizedBox(height: 20),
-                  Expanded(
-                      flex: 1,
-                      child: Text(
-                        message,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500),
-                      )),
-                  SizedBox(height: 10),
-                  RaisedButton(
-                    color: Colors.redAccent[700],
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    onPressed: () async {
-                      await _close();
-                    },
-                    child: Text(
-                      'OK',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                ],
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        // Icons.info,
+                        Icons.cancel,
+                        color: Colors.redAccent[700],
+                        size: 40,
+                      ),
+                      SizedBox(height: 20),
+                      Expanded(
+                          flex: 1,
+                          child: Text(
+                            message!,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.blue, fontSize: 13, fontWeight: FontWeight.w500),
+                          )),
+                      SizedBox(height: 10),
+                      ElevatedButton(
+                        // color: Colors.redAccent[700],
+                        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        onPressed: () async {
+                          await _close();
+                        },
+                        child: Text(
+                          'OK',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ));
+          ));
 }

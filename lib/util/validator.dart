@@ -1,30 +1,30 @@
 class Validator {
-  static String validateEmail(String value) {
+  static String? validateEmail(String value) {
     Pattern pattern = r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+';
-    RegExp regex = new RegExp(pattern);
+    RegExp regex = new RegExp(pattern as String);
     if (!regex.hasMatch(value))
       return 'Please enter a valid email address.';
     else
       return null;
   }
 
-  static String validateDropDefaultData(value) {
+  static String? validateDropDefaultData(value) {
     if (value == null)
       return 'Please select an item.';
     else
       return null;
   }
 
-  static String validatePassword(String value) {
+  static String? validatePassword(String value) {
     Pattern pattern = r'^.{6,}$';
-    RegExp regex = new RegExp(pattern);
+    RegExp regex = new RegExp(pattern as String);
     if (!regex.hasMatch(value))
       return 'Password must be at least 6 characters.';
     else
       return null;
   }
 
-  static String validateName(String value) {
+  static String? validateName(String value) {
     // Pattern pattern = r'^.{2,}$';
     // RegExp regex = new RegExp(pattern);
     if (value.length < 1)
@@ -33,7 +33,7 @@ class Validator {
       return null;
   }
 
-  static String validateText(String value) {
+  static String? validateText(String value) {
     // Pattern pattern = r'^.{2,}$';
     // RegExp regex = new RegExp(pattern);
     if (value.length < 1)
@@ -42,14 +42,14 @@ class Validator {
       return null;
   }
 
-  static String validateAddress(String value) {
+  static String? validateAddress(String value) {
     if (value.length < 1)
       return '🚩 Address is too short';
     else
       return null;
   }
 
-  static String validateNumber(String value) {
+  static String? validateNumber(String value) {
     // Pattern pattern = r'^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$';
     // RegExp regex = new RegExp(pattern);
 
@@ -63,7 +63,7 @@ class Validator {
       return null;
   }
 
-  static String validateMonth(String value) {
+  static String? validateMonth(String value) {
     if (int.parse(value) > 12) {
       return '🚩 Please a valid month.';
     }
@@ -73,7 +73,7 @@ class Validator {
       return null;
   }
 
-  static String validatePhoneNumber(String value) {
+  static String? validatePhoneNumber(String value) {
     // Pattern pattern = r'^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$';
     // RegExp regex = new RegExp(pattern);
 
@@ -87,7 +87,7 @@ class Validator {
       return null;
   }
 
-  static String validateCardNumber(String value) {
+  static String? validateCardNumber(String value) {
     // Pattern pattern = r'^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$';
     // RegExp regex = new RegExp(pattern);
 
@@ -101,10 +101,10 @@ class Validator {
       return null;
   }
 
-  static String validateAmount(String value) {
+  static String? validateAmount(String value) {
     Pattern pattern = r'(?!^0*$)(?!^0*\.0*$)^\d{1,15}(\.\d{1,2})?$';
     // Pattern pattern = r'^[0-9]+';
-    RegExp regex = new RegExp(pattern);
+    RegExp regex = new RegExp(pattern as String);
     if (!regex.hasMatch(value))
       return '🚩 Please enter valid amount.';
     else

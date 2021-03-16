@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/service/navigation_service.dart';
-import 'package:flutter_base/util/my_router.gr.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override

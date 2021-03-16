@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class DataBaseServiceSp {
   static final DataBaseServiceSp _instance = DataBaseServiceSp._internal();
   DataBaseServiceSp._internal();
-  static SharedPreferences _sharedPreferences;
+  static late SharedPreferences _sharedPreferences;
 
   factory DataBaseServiceSp() {
     return _instance;
@@ -22,7 +22,7 @@ class DataBaseServiceSp {
   //   return _sharedPreferences;
   // }
 
-  Future<void> logOut() async {
+  Future<bool> logOut() async {
     return await _sharedPreferences.setBool("key", false);
   }
 }

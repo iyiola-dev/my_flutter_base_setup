@@ -4,29 +4,29 @@ import 'package:flutter/services.dart';
 class CustomInputField extends StatefulWidget {
   /// surpoted field are
   /// [amount], [number]
-  final Widget prefixIocn;
-  final Image prefixImage;
-  final String field;
-  final int maxLength;
-  final TextEditingController textController;
-  final TextInputAction textInputAction;
-  final Map responce;
-  final bool hideText;
-  final String label;
-  final bool multiline;
-  final ValueChanged<String> onChanged;
-  final String initValue;
-  final Function validator;
+  final Widget? prefixIocn;
+  final Image? prefixImage;
+  final String? field;
+  final int? maxLength;
+  final TextEditingController? textController;
+  final TextInputAction? textInputAction;
+  final Map? responce;
+  final bool? hideText;
+  final String? label;
+  final bool? multiline;
+  final ValueChanged<String?> onChanged;
+  final String? initValue;
+  final Function? validator;
   final bool showErr;
   final double borderRad;
   final bool hasBorder;
   final bool autoValidate;
-  final Widget suffix;
-  final Function onEditingComplete;
-  final FocusNode focusNode;
+  final Widget? suffix;
+  final Function? onEditingComplete;
+  final FocusNode? focusNode;
   const CustomInputField(
       {this.field,
-      Key key,
+      Key? key,
       this.borderRad = 5.0,
       this.maxLength,
       this.suffix,
@@ -45,7 +45,7 @@ class CustomInputField extends StatefulWidget {
       this.multiline,
       this.initValue,
       this.hideText,
-      @required this.onChanged})
+      required this.onChanged})
       : super(key: key);
   @override
   _CustomInputFieldState createState() => _CustomInputFieldState();
@@ -53,16 +53,16 @@ class CustomInputField extends StatefulWidget {
 
 class _CustomInputFieldState extends State<CustomInputField>
     with WidgetsBindingObserver {
-  Map responce;
-  String label;
-  String _initValue;
+  Map? responce;
+  String? label;
+  String? _initValue;
   bool _obscureText = true;
 
   void _handleChanged() {
     widget.onChanged(finalValue);
   }
 
-  String finalValue;
+  String? finalValue;
 
   @override
   void initState() {
@@ -89,11 +89,11 @@ class _CustomInputFieldState extends State<CustomInputField>
         obscureText: widget.hideText != null ? _obscureText : false,
         initialValue: _initValue,
         onEditingComplete: () {
-          if (widget.onEditingComplete != null) widget.onEditingComplete();
+          if (widget.onEditingComplete != null) widget.onEditingComplete!();
         },
         textInputAction: widget.textInputAction,
         maxLines: widget.multiline != null ? 5 : 1,
-        validator: widget.validator,
+        validator: widget.validator as String? Function(String?)?,
         onChanged: (String value) {
           setState(() {
             finalValue = value.trim();

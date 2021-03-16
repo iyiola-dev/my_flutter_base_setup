@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Scaler {
-  num shortSide;
+  late num shortSide;
   Scaler(BuildContext context) {
     shortSide = MediaQuery.of(context).size.shortestSide;
   }
