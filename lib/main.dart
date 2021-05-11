@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ],
       builder: BotToastInit(),
       title: 'Flutter Demo',
-      navigatorKey: NavigationService().navigationKey,
+      navigatorKey: NavigationService.navigationKey,
     );
   }
 }
