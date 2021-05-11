@@ -19,14 +19,13 @@ class ApiResponse<T> {
 }
 
 ApiResponse returnResponse(Response response) {
-  print(response.statusCode);
   var responseJson = json.decode(response.body);
   switch (response.statusCode) {
     case 200:
     case 201:
     case 202:
     case 204:
-      return ApiResponse(success: true, message: "", data: responseJson);
+      return ApiResponse(success: true, message: responseJson["mas"], data: responseJson);
     case 400:
       String? msg = responseJson["message"];
       if (msg == "") {
@@ -35,29 +34,21 @@ ApiResponse returnResponse(Response response) {
       return ApiResponse(success: false, message: msg, data: null);
     case 401:
     case 403:
-      return ApiResponse(
-          success: false, message: responseJson["message"], data: null);
+      return ApiResponse(success: false, message: responseJson["message"], data: null);
     case 415:
-      return ApiResponse(
-          success: false, message: responseJson["error"], data: null);
+      return ApiResponse(success: false, message: responseJson["error"], data: null);
     case 500:
     case 501:
     case 502:
     case 503:
     case 504:
-      return ApiResponse(
-          success: false,
-          message:
-              "Apologies, someone forgot to fix a bug, rest assured, we will get to bottom of this",
-          data: null);
+      return ApiResponse(success: false, message: "Apologies, someone forgot to fix a bug, rest assured, we will get to bottom of this", data: null);
     default:
-      return ApiResponse(
-          success: false, message: responseJson["message"], data: null);
+      return ApiResponse(success: false, message: responseJson["message"], data: null);
   }
 }
 
 ApiResponse returnError<T>(String response) {
   var responseJson = json.decode(response);
-  return ApiResponse<T>(
-      data: null, errors: [], message: responseJson["message"], success: false);
+  return ApiResponse<T>(data: null, errors: [], message: responseJson["message"], success: false);
 }

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         BotToastNavigatorObserver(),
       ],
       builder: BotToastInit(),
-      title: 'Flutter Demo',
+      title: 'Flutter Base',
       navigatorKey: NavigationService.navigationKey,
     );
   }
